@@ -1,0 +1,56 @@
+﻿@model IEnumerable<LamaranWeb.Models.Applicant>
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h2>Daftar Pelamar</h2>
+            <a asp-action="Create" class="btn btn-primary btn-sm">Tambah Pelamar</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nama Lengkap</th>
+                        <th>Email</th>
+                        <th>No HP</th>
+                        <th>Waktu Lamaran</th>
+                        <th>CV</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var applicant in Model)
+                    {
+                        <tr>
+                            <td>@applicant.NamaLengkap</td>
+                            <td>@applicant.Email</td>
+                            <td>@applicant.NoHp</td>
+                            <td>@applicant.CreatedAt</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(applicant.CVName))
+                                {
+                                    <a href="@Url.Content("~/uploads/" + applicant.CVName)" target="_blank" class="btn btn-info btn-sm">Lihat CV</a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Tidak ada CV</span>
+                                }
+                            </td>
+                            <td class="d-flex">
+                                <a asp-action="Edit" asp-route-id="@applicant.Id" class="btn btn-warning btn-sm mr-2">Edit</a>
+                                <span class="mx-1"></span>
+                                <form asp-action="Delete" method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="@applicant.Id" />
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Yakin ingin menghapus data ini?');">
+                                        Hapus
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@model LamaranWeb.Models.ApplicantDTO
+
+@{
+    ViewData["Title"] = "Tambah Pelamar";
+}
+
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Tambah Data Pelamar</h3>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div class="form-group mb-3">
+                    <label for="NamaLengkap" class="form-label fw-bold">Nama Lengkap</label>
+                    <input asp-for="NamaLengkap" class="form-control" placeholder="Masukkan Nama Lengkap" />
+                    <span asp-validation-for="NamaLengkap" class="text-danger small"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Email" class="form-label fw-bold">Email</label>
+                    <input asp-for="Email" class="form-control" placeholder="Masukkan Email" />
+                    <span asp-validation-for="Email" class="text-danger small"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="NoHp" class="form-label fw-bold">No HP</label>
+                    <input asp-for="NoHp" class="form-control" placeholder="Masukkan No HP" />
+                    <span asp-validation-for="NoHp" class="text-danger small"></span>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="CV" class="form-label fw-bold">Unggah CV (PDF)</label>
+                    <input asp-for="CV" type="file" class="form-control" accept=".pdf" />
+                    <span asp-validation-for="CV" class="text-danger small"></span>
+                    <small class="form-text text-muted">File harus dalam format <strong>.pdf</strong>.</small>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success me-2">
+                        <i class="fas fa-save"></i> Simpan
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Batal
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
